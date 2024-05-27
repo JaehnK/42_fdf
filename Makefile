@@ -6,14 +6,14 @@
 #    By: jaehukim <jaehukim42@student.42gyeong      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/30 13:13:05 by jaehukim          #+#    #+#              #
-#    Updated: 2024/05/27 20:08:17 by jaehukim         ###   ########.fr        #
+#    Updated: 2024/05/27 21:03:05 by jaehukim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 HEADR = fdf.h
 CC = cc
-CFLAGS = -g -v -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 
 LIB = ./libft/libft.a \
 
@@ -40,15 +40,18 @@ all : $(NAME)
 	$(CC) -g -I minilibx-linux -Imlx_linux -O3 -c $< -o $@
 
 $(NAME) : $(OBJS)
+		@make re -C ./minilibx-linux/
 		@make re -C ./libft
 		$(CC) $(OBJS) -L$(MLX) -g -lmlx_Linux -I$(MLX) -L$(SUBDIR) $(LIB) -lXext -lX11 -lm -lz -o $(NAME)
 
 clean:
+	@make clean -C ./minilibx-linux/
 	@make clean -C ./libft
 	rm -rf $(OBJS)
 
 
 fclean: clean
+	@make fclean -C ./libft
 	@make fclean -C ./libft
 	rm -rf $(NAME)
 		
