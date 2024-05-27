@@ -6,7 +6,7 @@
 #    By: jaehukim <jaehukim42@student.42gyeong      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/30 13:13:05 by jaehukim          #+#    #+#              #
-#    Updated: 2024/05/27 21:03:05 by jaehukim         ###   ########.fr        #
+#    Updated: 2024/05/27 21:09:44 by jaehukim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ all : $(NAME)
 	$(CC) -g -I minilibx-linux -Imlx_linux -O3 -c $< -o $@
 
 $(NAME) : $(OBJS)
-		@make re -C ./minilibx-linux/
+		@make  -C ./minilibx-linux/
 		@make re -C ./libft
 		$(CC) $(OBJS) -L$(MLX) -g -lmlx_Linux -I$(MLX) -L$(SUBDIR) $(LIB) -lXext -lX11 -lm -lz -o $(NAME)
 
