@@ -33,7 +33,7 @@ static size_t	ft_width_checker(char *s)
 	return (cnt);
 }
 
-static void	ft_hw_checker(char *file, t_map *map_info)
+static size_t	ft_hw_checker(char *file, t_map *map_info)
 {
 	int		fd;
 	int		height;
@@ -41,6 +41,11 @@ static void	ft_hw_checker(char *file, t_map *map_info)
 
 	height = 1;
 	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		write(1, "error: fail to open fdf file\n", 30);
+		return (1);
+	}
 	line = get_next_line(fd);
 	map_info->width = ft_width_checker(line);
 	while (line)
@@ -51,12 +56,33 @@ static void	ft_hw_checker(char *file, t_map *map_info)
 	}
 	map_info->height = height - 1;
 	close(fd);
+	return (0);
+}
+
+static size_t	ft_check_extension(char *file, char *extension)
+{
+	int	i;
+	int	j;
+
+	i = ft_strlen(file) - ft_strlen(extension);
+	j = 0;
+	while (j < ft_strlen(extension))
+	{
+		if (file[i + j] != extension[j])
+		{
+			write(1, "error: extension not expected\n", 30);
+			return (1);
+		}
+		j++;
+	}
+	return (0);
 }
 
 size_t	ft_check_map(char *file, t_map *map_info)
 {
-	if (!ft_strnstr(file, ".fdf", ft_strlen(file)))
-		return (-1);
-	ft_hw_checker(file, map_info);
+	if (ft_check_extension(file, ".fdf") == 1)
+		return (1);
+	if (ft_hw_checker(file, map_info) == 1)
+		return (1);
 	return (0);
 }

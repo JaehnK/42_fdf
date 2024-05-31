@@ -21,9 +21,11 @@
 
 typedef	struct s_keyval
 {
-	double rot_x;
+	double	rot_x;
 	double	rot_y;
-	double rot_z;
+	double	rot_z;
+	int		x_keyoffset;
+	int		y_keyoffset;
 }	t_keyval;
 
 typedef struct s_map
@@ -86,4 +88,7 @@ void	ft_ctrl_keys(t_param *param, int rx, int ry, int rz);
 void	ft_double2d_free(double **arr);
 void	ft_calcul_offset(t_map *map);
 void	ft_zero_keys(t_param *param);
+void	ft_mouve(int keycode, t_param *param);
+void	ft_zoom(int keycode, t_param *param);
+void	ft_calcul_gap(t_map *map_info);
 #endif

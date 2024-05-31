@@ -109,7 +109,8 @@ void	ft_draw_img(t_param *param, t_map *map_info, int re)
 		ft_double2d_free(map_info->proj_y);
 		ft_double2d_free(map_info->proj_z);
 	}
-	ft_calcul_gap(map_info);
+	if (re == 0)
+		ft_calcul_gap(map_info);
 	ft_init_proj_x(map_info);
 	ft_init_proj_y(map_info);
 	ft_init_proj_z(map_info);

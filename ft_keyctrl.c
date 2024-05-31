@@ -65,3 +65,17 @@ void	ft_double2d_free(double **arr)
 		free(arr);
 	}
 }
+
+void	ft_mouve(int keycode, t_param *param)
+{
+	ft_paint_black(param->map, param);
+	if (keycode == 65362)
+		param->map->keys.y_keyoffset -= 10;
+	else if (keycode == 65364)
+		param->map->keys.y_keyoffset += 10;
+	else if (keycode == 65363)
+		param->map->keys.x_keyoffset += 10;
+	else if (keycode == 65361)
+		param->map->keys.x_keyoffset -= 10;
+	ft_draw_img(param, param->map, 1);
+}

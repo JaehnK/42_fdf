@@ -6,14 +6,14 @@
 #    By: jaehukim <jaehukim42@student.42gyeong      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/30 13:13:05 by jaehukim          #+#    #+#              #
-#    Updated: 2024/05/27 21:09:44 by jaehukim         ###   ########.fr        #
+#    Updated: 2024/05/29 13:53:24 by jaehukim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 HEADR = fdf.h
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra -fsanitize=address
 
 LIB = ./libft/libft.a \
 

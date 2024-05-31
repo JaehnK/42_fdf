@@ -17,8 +17,8 @@ static t_point	*ft_generate_pt(int x, int y, t_map *map)
 	t_point	*point;
 
 	point = (t_point *) malloc(sizeof(t_point *));
-	point->x = (int) map->proj_x[y][x] + map->x_offset;
-	point->y = (int) map->proj_y[y][x] + map->y_offset;
+	point->x = (int) map->proj_x[y][x] + map->x_offset + map->keys.x_keyoffset;
+	point->y = (int) map->proj_y[y][x] + map->y_offset + map->keys.y_keyoffset;
 	point->z = (int) map->altitude[y][x];
 	point->colour = map->colour[y][x];
 	return (point);

@@ -45,3 +45,15 @@ void	my_mlx_pixel_put(t_data *img, int x, int y, int colour)
 	*(unsigned int *)dst = colour;
 	return ;
 }
+
+void	ft_zoom(int keycode, t_param *param)
+{
+	ft_paint_black(param->map, param);
+	if (keycode == 61)
+		param->map->gap *= 1.2;
+	else if (keycode == 45)
+		param->map->gap *= 0.8;
+	else if (keycode == 48)
+		ft_calcul_gap(param->map);
+	ft_draw_img(param, param->map, 1);
+}

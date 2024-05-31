@@ -16,6 +16,8 @@ void	ft_init_keys(t_map *map_info)
 	map_info->keys.rot_x = 35.264;
 	map_info->keys.rot_y = 45;
 	map_info->keys.rot_z = 0;
+	map_info->keys.x_keyoffset = 0;
+	map_info->keys.y_keyoffset = 0;
 }
 
 static int	mlx_close(t_param *param)
@@ -45,6 +47,10 @@ static int	mlx_key_handle(int keycode, t_param *param)
 	}
 	else if (keycode == 65430)
 		ft_zero_keys(param);
+	else if (keycode >= 65361 && keycode <= 65364)
+		ft_mouve(keycode, param);
+	else if (keycode == 61 || keycode == 45 || keycode == 48)
+		ft_zoom(keycode, param);
 	return (0);
 }
 
@@ -65,11 +71,18 @@ int	main(int argc, char **argv)
 	t_map	*map_info;
 
 	if (argc != 2)
+	{
+		write(1, "error: Check Arguments\n", 24);
 		return (-1);
+	}
 	map_info = (t_map *) malloc(sizeof(t_map));
 	if (!map_info)
 		return (-1);
-	ft_check_map(argv[1], map_info);
+	if (ft_check_map(argv[1], map_info) == 1)
+	{
+		write(1, "check failed\n", 14);
+		exit (-1);
+	}
 	ft_parse_map(argv[1], map_info);
 	param.map = map_info;
 	ft_mlx_init(&param, param.map);
